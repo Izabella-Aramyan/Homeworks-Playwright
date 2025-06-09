@@ -1,20 +1,20 @@
 import{test,expect} from '@playwright/test';
 
-// //Zangak
+//Zangak
 
-// test('Serach books',async ({page})=>{
-// await page.goto("https://zangakbookstore.am/")
-// await page.locator('.search-string-form input').fill('Ուիլյամ Սարոյան');
-// const secondSearchIcon = page.locator('.fal.fa-search').nth(1);
-// await secondSearchIcon.waitFor({ state: 'visible' });
-// await secondSearchIcon.click();
-// await expect(page).toHaveURL('https://zangakbookstore.am/search?q=%D5%88%D6%82%D5%AB%D5%AC%D5%B5%D5%A1%D5%B4+%D5%8D%D5%A1%D6%80%D5%B8%D5%B5%D5%A1%D5%B6')
-// await page.getByText('The Human Comedy', { exact: true }).click();
-// await expect(page).toHaveURL('https://zangakbookstore.am/the-human-comedy')
-// });
+test('Serach books',async ({page})=>{
+await page.goto("https://zangakbookstore.am/")
+await page.locator('.search-string-form input').fill('Ուիլյամ Սարոյան');
+const secondSearchIcon = page.locator('.fal.fa-search').nth(1);
+await secondSearchIcon.waitFor({ state: 'visible' });
+await secondSearchIcon.click();
+await expect(page).toHaveURL('https://zangakbookstore.am/search?q=%D5%88%D6%82%D5%AB%D5%AC%D5%B5%D5%A1%D5%B4+%D5%8D%D5%A1%D6%80%D5%B8%D5%B5%D5%A1%D5%B6')
+await page.getByText('The Human Comedy', { exact: true }).click();
+await expect(page).toHaveURL('https://zangakbookstore.am/the-human-comedy')
+});
 
 
-// //Zigzag
+//Zigzag
 
 
 test('Serach phone item',async ({page})=>{
@@ -86,17 +86,17 @@ page.on('dialog', async name =>{
 
 
 
-// test('Sorting Order',async ({page})=>{
-//  await page.goto("https://www.zigzag.am/");
-//  const searchField=page.locator('[id="search"]');
-//  await searchField.fill("Phone");
-//  await searchField.press('Enter');
-// await expect(page).toHaveURL('https://www.zigzag.am/am/catalogsearch/result/?q=Phone');
-// const buttonName= page.locator('button:has(div.filter-option-inner-inner)').click();
-// await page.locator('[role="listbox"]').nth(2).click();
-// await page.locator('[role="dropdown-menu.inner"]').nth(2).click();
-// await expect(page).toHaveURL('https://www.zigzag.am/am/catalogsearch/result/index/?q=Phone&product_list_order=price&product_list_dir=asc')
-// });
+test('Sorting Order',async ({page})=>{
+ await page.goto("https://www.zigzag.am/");
+ const searchField=page.locator('[id="search"]');
+ await searchField.fill("Phone");
+ await searchField.press('Enter');
+await expect(page).toHaveURL('https://www.zigzag.am/am/catalogsearch/result/?q=Phone');
+const buttonName= page.locator('button:has(div.filter-option-inner-inner)').click();
+await page.locator('[role="listbox"]').nth(2).click();
+await page.locator('[role="dropdown-menu.inner"]').nth(2).click();
+await expect(page).toHaveURL('https://www.zigzag.am/am/catalogsearch/result/index/?q=Phone&product_list_order=price&product_list_dir=asc')
+});
 
 
 
