@@ -64,9 +64,9 @@ const cartProductNames = await page
     .locator('div.minicart-items-wrapper li.product-item strong.product-item-name > a')
     .allTextContents();
 
-// Verify the 2 items are present in the basket
-expect(cartProductNames).toContain('Hama Mini Stylus for Tablet,phones (119446)');
-expect(cartProductNames).toContain('Panasonic KX-TGE510RUS');
+// Verify the 2 items are present in the basket// Soft assertions
+ expect.soft(cartProductNames).toContain('Hama Mini Stylus for Tablet,phones (119446)');
+ expect.soft(cartProductNames).toContain('Panasonic KX-TGE510RUS');
 
 //delete the first item
 await page.locator('li.product-item', { hasText: 'Panasonic KX-TGE510RUS' })
@@ -74,7 +74,7 @@ await page.locator('li.product-item', { hasText: 'Panasonic KX-TGE510RUS' })
   .click();
 
 const confirmButton = page.locator('.action-primary.action-accept'); // "Yes" button
-await expect(confirmButton).toBeVisible();
+await expect.soft(confirmButton).toBeVisible();
 
 // Click the "Yes" button to confirm deletion
 await confirmButton.click();
@@ -82,7 +82,7 @@ await page.waitForTimeout(2000);
 
 // Verify the deleted item is no longer present
 const updatedCartProductNames = await page.locator('li.item.product.product-item strong.product-item-name > a').allTextContents();
-expect(updatedCartProductNames).not.toContain('Panasonic KX-TGE510RUS');
+expect.soft(updatedCartProductNames).not.toContain('Panasonic KX-TGE510RUS');
 });
 
 
@@ -97,6 +97,11 @@ await expect (page).toHaveURL('https://www.zigzag.am/am/only-on-line.html?manufa
 });
 
 
+
+
+
+
+
 test('Verify search button functionality',async({page})=>{
 await page.goto("https://www.zigzag.am/");
 const searchButton=page.locator('button[aria-label="Search"]')
@@ -105,7 +110,7 @@ const inputField= page.locator('input#search')
 await inputField.fill('Sony')
 await expect(inputField).toHaveValue('Sony');
  await expect(searchButton).toBeEnabled();
-});
+}); 
 
 
 
