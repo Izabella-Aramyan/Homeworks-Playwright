@@ -112,6 +112,8 @@ test('Delete one item from basket', async ({ page }) => {
 
 
 
+
+
 test('Order the items', async ({ page }) => {
   await page.goto("https://www.zigzag.am/");
   const category1 = page.locator('ul.short_list a[href*="computers-notebooks-tablets"]');
@@ -211,6 +213,3 @@ test('Order the items', async ({ page }) => {
   const finalTotalPrice = page.locator('tr.totals.sub td.amount span.price');
   await expect.soft(finalTotalPrice).toBeVisible();
 });
-
-
-
