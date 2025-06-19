@@ -124,7 +124,10 @@ test('Sorting Order ascending', async ({ page }) => {
     // Click the 3rd option (low to high)
     await page.locator('a[role="option"].dropdown-item').nth(2).click();
     //Get all products
+
+    await page.waitForSelector('ol.grid_list.products.list.items > li');
     const allElements = await page.$$('ol.grid_list.products.list.items > li');
+
     console.log(`Number of total items: ${allElements.length}`);
 
     const prices: number[] = [];
@@ -132,7 +135,7 @@ test('Sorting Order ascending', async ({ page }) => {
         const priceElement = await itemAscending.$('.current_price');
         if (priceElement) {
             const text = await priceElement.textContent();
-            const cleaned = text?.replace(/[^\d.]/g, '');
+            const cleaned = text?.replace('֏', '').replace(',', '').trim();
             if (cleaned) {
                 prices.push(parseFloat(cleaned));
             }
@@ -143,8 +146,8 @@ test('Sorting Order ascending', async ({ page }) => {
 
     // Check if prices are ascending
     let isAscending = true;
-    for (let i = 1; i < prices.length; i++) {
-        if (prices[i] < prices[i - 1]) {
+    for (let i = 0; i < prices.length - 1; i++) {
+        if (prices[i] > prices[i + 1]) {
             isAscending = false;
             break;
         }
@@ -159,6 +162,8 @@ test('Sorting Order ascending', async ({ page }) => {
 
 
 
+
+
 test('Sorting Order descending', async ({ page }) => {
     await page.goto("https://www.zigzag.am/");
     const searchField = page.locator('[id="search"]');
@@ -170,6 +175,7 @@ test('Sorting Order descending', async ({ page }) => {
     // Click the 2rd option (low to high)
     await page.locator('a[role="option"].dropdown-item').nth(1).click();
     //Get all products
+    await page.waitForSelector('ol.grid_list.products.list.items > li');
     const allElements = await page.$$('ol.grid_list.products.list.items > li');
     console.log('Number of product items:', allElements.length);
     const prices: number[] = [];
@@ -177,7 +183,7 @@ test('Sorting Order descending', async ({ page }) => {
         const priceElement = await itemDescending.$('.current_price');
         if (priceElement) {
             const text = await priceElement.textContent();
-            const cleaned = text?.replace(/[^\d.]/g, '');
+            const cleaned = text?.replace('֏', '').trim();
             if (cleaned) {
                 prices.push(parseFloat(cleaned));
             }
@@ -187,7 +193,7 @@ test('Sorting Order descending', async ({ page }) => {
 
     let isDescending = true;
     for (let i = 1; i < prices.length; i++) {
-        if (prices[i] > prices[i - 1]) {
+        if (prices[i] < prices[i - 1]) {
             isDescending = false;
             break;
         }
