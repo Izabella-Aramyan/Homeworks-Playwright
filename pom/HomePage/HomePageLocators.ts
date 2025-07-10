@@ -1,5 +1,6 @@
-export const HomepageLocators = {
-    searchIcon: '.earch-btn',
-    searcInput: '.search-row.active',
+export const HomePageLocators = {
+    searchIcon: '.search-btn',
+    searcInput: '.search-row.active input',
     searchButton: '.submit-search'
+
 }
